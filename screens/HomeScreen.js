@@ -1,8 +1,10 @@
 import {
+  FlatList,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -37,18 +39,19 @@ const HomeScreen = () => {
         {/* Today's Tasks */}
         <View style={styles.tasksWrapper}>
           <Text style={styles.sectionTitle}>Today's Tasks</Text>
-          <View style={styles.items}>
+          <ScrollView style={styles.items}>
             {
               taskItems.map((item, index) => {
-               return (
-                <TouchableOpacity key={index} onPress={() => completeTask(index)}>
-                 <Task key={index} text={item}/>
-                </TouchableOpacity>
-               )
-               
+                return (
+                  <SafeAreaView style={styles.container} edges={['top']}>
+                    <TouchableOpacity key={index} onPress={() => completeTask(index)}>
+                      <Task key={index} text={item}/>
+                    </TouchableOpacity>
+                  </SafeAreaView>
+                )
               })
             }
-          </View>
+          </ScrollView>
         </View>
         {/* Write a task*/}
         <KeyboardAvoidingView
@@ -73,12 +76,18 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   safeArea: {
-    flex: 1, // Ensures it takes full height
+    flex: 1, 
   },
   container: {
     flex: 1,
     backgroundColor: "gray",
   },
+  scroll:{
+    flex: 1,
+    backgroundColor: "gray",
+    marginBottom:15
+  },
+
   tasksWrapper: {
     paddingTop: 80,
     paddingHorizontal: 20,
@@ -89,10 +98,11 @@ const styles = StyleSheet.create({
   },
   items: {
     marginTop: 30,
+    marginBottom:120
   },
   WriteTaskWrapper: {
    position:'absolute',
-   bottom:30,
+   bottom:20,
    width: '100%',
    flexDirection:'row',
    justifyContent:'space-between',
@@ -116,9 +126,5 @@ const styles = StyleSheet.create({
   borderRadius:60,
   justifyContent:'center',
   alignItems:'center'
-  },
-  addText:{
-
-  }
-  
+  },  
 });
