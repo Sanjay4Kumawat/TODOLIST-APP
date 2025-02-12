@@ -1,14 +1,52 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet,Text,TouchableOpacity, View } from 'react-native'
 import React from 'react'
 
-const Task = () => {
+const Task = (props) => {
   return (
-    <View>
-      <Text>Task</Text>
+    <View style={styles.items}>
+      <View style={styles.itemsLeft}>
+        <View style={styles.square}></View>
+        <Text style={styles.itemText}>{props.text}</Text>
+        
+        </View> 
+      <View style={styles.circular}></View>
     </View>
   )
 }
 
 export default Task
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  items:{
+   backgroundColor:"#FFF",
+   padding: 15,
+   borderRadius:10,
+   flexDirection:'row',
+   alignItems:'center',
+   justifyContent:'space-between',
+   marginBottom:20,
+  },
+  itemsLeft:{
+    flexDirection:'row',
+    alignItems:'center',
+    flexWrap:'wrap'
+  },
+  square:{
+   width:24,
+   height:24,
+   backgroundColor:'#55BCF6',
+   opacity:0.4,
+   borderRadius:10,
+   marginRight:15,
+  },
+  itemText: {
+   maxWidth:'80%'
+  },
+  circular:{
+  width:12,
+  height:12,
+  borderRadius:5,
+  borderColor:'#55BCF6',
+  borderWidth:2
+  }
+})
